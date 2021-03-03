@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface CarService {
 
-    List<Car> initCars();
-    int getCarCount(List<Car> carList);
+    List<Car> getLimitCarList(int requestNuberOfCars);
 
 }

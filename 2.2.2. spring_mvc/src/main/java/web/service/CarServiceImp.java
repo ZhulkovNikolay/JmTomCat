@@ -6,6 +6,7 @@ import web.model.Car;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Component
@@ -21,8 +22,7 @@ public class CarServiceImp implements CarService {
         this.cars = cars;
     }
 
-    @Override
-    public List<Car> initCars() {
+    public CarServiceImp() {
         cars = new ArrayList<>();
         cars.add(new Car(1, "T-90", 60));
         cars.add(new Car(2, "T-80", 60));
@@ -34,12 +34,10 @@ public class CarServiceImp implements CarService {
         cars.add(new Car(8, "T-55", 27));
         cars.add(new Car(9, "T-50", 28));
         cars.add(new Car(10, "T-34", 36));
-        return cars;
     }
 
     @Override
-    public int getCarCount(List<Car> carList) {
-        this.cars = carList;
-        return carList.size();
+    public List<Car> getLimitCarList(int requestNuberOfCars) {
+        return cars.stream().limit(requestNuberOfCars).collect(Collectors.toList());
     }
 }
